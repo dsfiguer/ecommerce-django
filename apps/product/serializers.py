@@ -17,6 +17,7 @@ class ListProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
+            'sku',
             'name',
             'price',
             'pics'
