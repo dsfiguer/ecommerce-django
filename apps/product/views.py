@@ -16,4 +16,4 @@ class ListSiteProducts(generics.ListAPIView):
 
         website = get_object_or_404(Website, name=website_name)
 
-        return Product.objects.filter(site=website)
+        return Product.objects.filter(site=website, is_available=True)
