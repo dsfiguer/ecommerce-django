@@ -4,5 +4,5 @@ from .views import ListSiteProducts
 
 
 urlpatterns = [
-    path('<str:name>/', ListSiteProducts.as_view())
+    path('list/<str:name>/', ListSiteProducts.as_view()),
 ]
