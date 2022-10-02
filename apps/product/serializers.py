@@ -16,7 +16,8 @@ class ProductVariantSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductVariant
         fields = [
-            'title'
+            'title',
+            'price'
         ]
 
 

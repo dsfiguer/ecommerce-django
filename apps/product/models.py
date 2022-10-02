@@ -54,7 +54,7 @@ class Product(models.Model):
 
     sku = models.CharField(max_length=8, default=_set_sku(), unique=True, primary_key=True, editable=False)
     slug = models.SlugField(max_length=25, unique=True, blank=True, editable=False)
-    profit = models.FloatField(default=0.0, editable=False, )
+    profit = models.FloatField(default=0.0, editable=False)
     created_at = models.DateField(default=timezone.now, editable=False)
 
     is_available = models.BooleanField(default=True)
@@ -72,3 +72,4 @@ class ProductVariant(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="variant")
     title = models.CharField(max_length=50)
+    price = models.FloatField(null=True, blank=True)
