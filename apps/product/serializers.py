@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Product, ProductPictures
+from .models import Product, ProductPictures, ProductVariant
 
 
 class ProductPictureSerializer(serializers.ModelSerializer):
@@ -11,13 +11,24 @@ class ProductPictureSerializer(serializers.ModelSerializer):
             'thumbnail'
         ]
 
+
+class ProductVariantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductVariant
+        fields = [
+            'title'
+        ]
+
+
 class ListProductSerializer(serializers.ModelSerializer):
     pics = ProductPictureSerializer(many=True, read_only=True)
+    variant = ProductVariantSerializer(many=True, read_only=True)
     class Meta:
         model = Product
         fields = [
             'sku',
             'name',
             'price',
-            'pics'
+            'pics',
+            'variant'
         ]
