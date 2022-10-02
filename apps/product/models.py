@@ -10,6 +10,13 @@ from django.utils import timezone
 from apps.website.models import Website
 
 
+class Category(models.Model):
+    def __str__(self):
+        return self.category
+
+    category = models.CharField(max_length=50)
+
+
 class Product(models.Model):
     def _set_sku():
         random_nums = str(random.randint(1000, 9999))
@@ -43,6 +50,7 @@ class Product(models.Model):
     description = models.TextField(null=True, blank=True)
 
     site = models.ForeignKey(Website, on_delete=models.CASCADE)
+    categories = models.ManyToManyField(Category)
 
     sku = models.CharField(max_length=8, default=_set_sku(), unique=True, primary_key=True, editable=False)
     slug = models.SlugField(max_length=25, unique=True, blank=True, editable=False)
@@ -57,3 +65,10 @@ class ProductPictures(models.Model):
     picture = models.ImageField(upload_to="product/")
     thumbnail = models.BooleanField(default=False)
 
+
+class ProductVariant(models.Model):
+    def __str__(self):
+        return self.title
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)

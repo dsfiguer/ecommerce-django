@@ -1,10 +1,14 @@
 from django.contrib import admin
 
-from .models import Product, ProductPictures
+from .models import Category, Product, ProductPictures, ProductVariant
 
 
 class ProductPictureDisplay(admin.TabularInline):
     model = ProductPictures
+
+
+class ProductVariantDisplay(admin.TabularInline):
+    model = ProductVariant
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -17,7 +21,8 @@ class ProductAdmin(admin.ModelAdmin):
         'is_available'
     ]
     inlines = [
-        ProductPictureDisplay
+        ProductPictureDisplay,
+        ProductVariantDisplay
     ]
     readonly_fields = [
         'slug',
@@ -28,3 +33,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Category)
