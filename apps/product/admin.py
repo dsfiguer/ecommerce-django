@@ -28,7 +28,6 @@ class ProductAdmin(admin.ModelAdmin):
         'slug',
         'profit',
         'created_at',
-        'sku'
     ]
 
 
