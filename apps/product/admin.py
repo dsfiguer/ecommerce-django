@@ -13,11 +13,11 @@ class ProductVariantDisplay(admin.TabularInline):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
-        'site',
         'sku',
         'name',
         'price',
         'profit',
+        'site',
         'is_available'
     ]
     inlines = [
